@@ -27,6 +27,7 @@
             font-size: 2em;
             color: white;
             text-align: center;
+            position: relative;
         }
 
         #page1 {
@@ -40,21 +41,63 @@
         #page3 {
             background-color: purple;
         }
+
+        .content {
+            display: none;
+        }
+
+        .content.visible {
+            display: block;
+        }
+
+        .player {
+            margin-top: 20px;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .song-title {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
     </style>
 </head>
 <body>
-    <div class="page" id="page1"></div>
+    <div class="page" id="page1">
+        <div class="content" id="redTitle">我是红标题</div>
+        <div class="content" id="songPlayer">
+            <div class="song-title">《火红的萨日朗》</div>
+            <audio controls>
+                <source src="https://www.example.com/fire-red-sarilang.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
     <div class="page" id="page2"></div>
     <div class="page" id="page3"></div>
 
     <script>
         let currentIndex = 0;
         const pages = document.querySelectorAll('.page');
+        const redTitle = document.getElementById('redTitle');
+        const songPlayer = document.getElementById('songPlayer');
 
         // 添加点击事件监听
         document.body.addEventListener('click', () => {
-            // 切换到下一个页面
-            currentIndex = (currentIndex + 1) % pages.length;
+            if (currentIndex === 0) {
+                // 如果当前是红色页面，第一次点击显示标题，第二次点击显示播放器
+                if (!redTitle.classList.contains('visible')) {
+                    redTitle.classList.add('visible');
+                } else if (!songPlayer.classList.contains('visible')) {
+                    songPlayer.classList.add('visible');
+                }
+            } else {
+                // 切换到下一个页面
+                currentIndex = (currentIndex + 1) % pages.length;
+            }
             changePage();
         });
 

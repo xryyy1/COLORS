@@ -35,11 +35,15 @@
         }
 
         #page2 {
-            background-color: blue;
+            background-color: green;
         }
 
         #page3 {
-            background-color: purple;
+            background-color: lightgreen;
+        }
+
+        #page4 {
+            background-color: blue;
         }
 
         .content {
@@ -50,49 +54,93 @@
             display: block;
         }
 
-        .player {
+        .song-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .lyrics {
+            margin-top: 20px;
+            font-size: 1.2em;
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        .image {
             margin-top: 20px;
         }
 
-        audio {
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .song-title {
-            margin-bottom: 10px;
-            font-size: 1.5em;
+        img {
+            width: 50%;
+            max-width: 300px;
+            height: auto;
         }
     </style>
 </head>
 <body>
     <div class="page" id="page1">
-        <div class="content" id="redTitle">我是红标题</div>
-        <div class="content" id="songPlayer">
-            <div class="song-title">《火红的萨日朗》</div>
-            <audio controls>
-                <source src="https://www.example.com/fire-red-sarilang.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+        <div class="content" id="songTitle">《火红的萨日朗》</div>
+        <div class="content" id="songLyrics" class="lyrics">
+            这是火红的萨日朗的歌词：  
+            火红的萨日朗，
+            在春风里跳舞，
+            山川河流，跟着她歌唱，
+            太阳照耀着她的脸庞……
         </div>
     </div>
+
     <div class="page" id="page2"></div>
-    <div class="page" id="page3"></div>
+
+    <div class="page" id="page3">
+        <div class="content" id="greenText">这里是青青草原</div>
+        <div class="content" id="lazySheepImage" class="image">
+            <img src="https://via.placeholder.com/300x200.png?text=%E6%85%8B%E7%BE%8A%E7%BE%8A" alt="懒羊羊">
+        </div>
+    </div>
+
+    <div class="page" id="page4">
+        <div class="content" id="guoCangHaiText">观沧海</div>
+        <div class="content" id="guoCangHaiFull" class="lyrics">
+            《观沧海》全文：  
+            海上生明月，天涯共此时。  
+            情人怨遥夜，竟夕起相思。  
+            予怀帝子陵，空忆谢将军。  
+            于嗟阮籍！  
+        </div>
+    </div>
 
     <script>
         let currentIndex = 0;
         const pages = document.querySelectorAll('.page');
-        const redTitle = document.getElementById('redTitle');
-        const songPlayer = document.getElementById('songPlayer');
+        const songTitle = document.getElementById('songTitle');
+        const songLyrics = document.getElementById('songLyrics');
+        const greenText = document.getElementById('greenText');
+        const lazySheepImage = document.getElementById('lazySheepImage');
+        const guoCangHaiText = document.getElementById('guoCangHaiText');
+        const guoCangHaiFull = document.getElementById('guoCangHaiFull');
 
         // 添加点击事件监听
         document.body.addEventListener('click', () => {
             if (currentIndex === 0) {
-                // 如果当前是红色页面，第一次点击显示标题，第二次点击显示播放器
-                if (!redTitle.classList.contains('visible')) {
-                    redTitle.classList.add('visible');
-                } else if (!songPlayer.classList.contains('visible')) {
-                    songPlayer.classList.add('visible');
+                // 红色背景：显示歌曲标题
+                if (!songTitle.classList.contains('visible')) {
+                    songTitle.classList.add('visible');
+                } else if (!songLyrics.classList.contains('visible')) {
+                    songLyrics.classList.add('visible');
+                }
+            } else if (currentIndex === 1) {
+                // 绿色背景：显示“这里是青青草原”
+                if (!greenText.classList.contains('visible')) {
+                    greenText.classList.add('visible');
+                } else if (!lazySheepImage.classList.contains('visible')) {
+                    lazySheepImage.classList.add('visible');
+                }
+            } else if (currentIndex === 2) {
+                // 蓝色背景：显示《观沧海》
+                if (!guoCangHaiText.classList.contains('visible')) {
+                    guoCangHaiText.classList.add('visible');
+                } else if (!guoCangHaiFull.classList.contains('visible')) {
+                    guoCangHaiFull.classList.add('visible');
                 }
             } else {
                 // 切换到下一个页面

@@ -89,14 +89,14 @@
         </div>
     </div>
 
-    <div class="page" id="page2"></div>
-
-    <div class="page" id="page3">
+    <div class="page" id="page2">
         <div class="content" id="greenText">这里是青青草原</div>
         <div class="content" id="lazySheepImage" class="image">
             <img src="https://via.placeholder.com/300x200.png?text=%E6%85%8B%E7%BE%8A%E7%BE%8A" alt="懒羊羊">
         </div>
     </div>
+
+    <div class="page" id="page3"></div>
 
     <div class="page" id="page4">
         <div class="content" id="guoCangHaiText">观沧海</div>
@@ -121,6 +121,7 @@
 
         // 添加点击事件监听
         document.body.addEventListener('click', () => {
+            // 控制页面内容和顺序显示
             if (currentIndex === 0) {
                 // 红色背景：显示歌曲标题
                 if (!songTitle.classList.contains('visible')) {
@@ -142,10 +143,10 @@
                 } else if (!guoCangHaiFull.classList.contains('visible')) {
                     guoCangHaiFull.classList.add('visible');
                 }
-            } else {
-                // 切换到下一个页面
-                currentIndex = (currentIndex + 1) % pages.length;
-            }
+            } 
+            
+            // 更新页面内容并切换到下一个页面
+            currentIndex = (currentIndex + 1) % pages.length;
             changePage();
         });
 

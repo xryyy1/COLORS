@@ -121,7 +121,7 @@
 
         // 添加点击事件监听
         document.body.addEventListener('click', () => {
-            // 控制页面内容和顺序显示
+            // 控制每个页面的内容显示
             if (currentIndex === 0) {
                 // 红色背景：显示歌曲标题
                 if (!songTitle.classList.contains('visible')) {
@@ -143,16 +143,17 @@
                 } else if (!guoCangHaiFull.classList.contains('visible')) {
                     guoCangHaiFull.classList.add('visible');
                 }
-            } 
-            
-            // 更新页面内容并切换到下一个页面
-            currentIndex = (currentIndex + 1) % pages.length;
+            }
+
+            // 更新页面索引，按顺序切换页面
+            currentIndex = (currentIndex + 1) % 4;  // 确保是四个页面之间循环
             changePage();
         });
 
         // 改变页面显示
         function changePage() {
             for (let i = 0; i < pages.length; i++) {
+                // 每次切换到新的页面，更新背景
                 pages[i].style.transform = `translateY(-${currentIndex * 100}vh)`;
             }
         }
